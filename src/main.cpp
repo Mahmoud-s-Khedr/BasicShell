@@ -1,7 +1,7 @@
 //c++
 #include <iostream>
-
-
+//c
+#include <unistd.h>
 int main(){
     std::cout << std::unitbuf;
     std::cerr << std::unitbuf;
@@ -11,10 +11,14 @@ int main(){
         std::cout << "$ ";
         std::string input;
         std::getline(std::cin, input);
-        if (input == "exit"){
+        if(input.substr(0,4) == "echo"){
+            system(input.c_str());
+        }
+        else if (input == "exit"){
+            std::cout<<"Goodbye\n";
             return 0;
         }else{
-            system(input.c_str());
+            std::cout<<"Command not found\n";
         }
 
     }
